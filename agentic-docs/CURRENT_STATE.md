@@ -118,13 +118,16 @@ user.email: quaid@iquaid.org
 
 ### Current Branch Status
 ```
-Branch: main
-Ahead of origin/main by 3 commits:
+Branch: feat/story-1.1-and-placeholder-content
+Pull Request: #6 (OPEN)
+URL: https://github.com/karstenwade/karstenwade.com/pull/6
+
+Commits in PR:
   - dc2b21b: Story 1.1 completion
   - 18cf319: Placeholder content
-  - f718a81: CURRENT_STATE.md documentation
+  - 1c76788: CURRENT_STATE.md documentation
 
-Ready to create PR.
+Waiting for PR merge confirmation.
 ```
 
 ### Workflow Notes
@@ -134,6 +137,7 @@ Ready to create PR.
 3. Create PR to main
 4. Wait for PR merge confirmation
 5. Never push directly to main
+6. After merge, switch back to main and pull latest
 
 ---
 
@@ -144,13 +148,17 @@ Ready to create PR.
 
 ## Notes for Next Session
 
-1. **Create PR for completed work** - 3 commits ready for pull request:
-   - Story 1.1 completion
-   - Placeholder content
-   - CURRENT_STATE.md documentation
-2. **Close Issue #3** - After PR is merged, close issue referencing the PR
-3. **Pick next story** - Recommend Story 1.2 (GitHub Actions) to complete deployment pipeline
-4. **Design system** - Story 2.1 could run parallel if preferred
+1. **WAITING: PR #6 merge** - Pull request created and waiting for merge confirmation
+   - URL: https://github.com/karstenwade/karstenwade.com/pull/6
+   - Contains Story 1.1, placeholder content, and CURRENT_STATE.md
+2. **After PR merge:**
+   - Close Issue #3 (Story 1.1) referencing PR #6
+   - Switch back to main branch: `git checkout main`
+   - Pull latest: `git pull origin main`
+   - Delete feature branch: `git branch -d feat/story-1.1-and-placeholder-content`
+3. **Then pick next story:**
+   - Recommend Story 1.2 (GitHub Actions) to complete deployment pipeline
+   - Or Story 2.1 (Design system) could run parallel if preferred
 
 ---
 
