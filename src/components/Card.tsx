@@ -6,18 +6,27 @@ export interface CardProps {
   link: string
   image?: string
   className?: string
+  external?: boolean
 }
 
-const Card = ({ title, description, link, image, className = '' }: CardProps) => {
+const Card = ({ title, description, link, image, className = '', external = false }: CardProps) => {
   const cardClasses = [
     'card',
     image ? 'card--with-image' : '',
     className,
   ].filter(Boolean).join(' ')
 
+  // Determine if link is external (starts with http:// or https://)
+  const isExternal = external || link.startsWith('http://') || link.startsWith('https://')
+
   return (
     <article className={cardClasses}>
-      <a href={link} className="card__link" aria-label={title}>
+      <a
+        href={link}
+        className="card__link"
+        aria-label={title}
+        {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
+      >
         {image && (
           <div className="card__image-container">
             <img
