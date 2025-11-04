@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Navigation.css'
 
 interface NavigationProps {
@@ -63,13 +64,13 @@ const Navigation = ({ className = '' }: NavigationProps) => {
       >
         {navLinks.map((link) => (
           <li key={link.href} className="navigation__item">
-            <a
-              href={link.href}
+            <Link
+              to={link.href}
               className="navigation__link"
               onClick={closeMenu}
             >
               {link.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
