@@ -1,44 +1,31 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Navigation from './components/Navigation'
+import Home from './pages/Home'
+import Writing from './pages/Writing'
+import CV from './pages/CV'
+import Theories from './pages/Theories'
+import OpenPapers from './pages/OpenPapers'
 import './styles/App.css'
 
 function App() {
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Karsten Wade</h1>
-        <p className="tagline">Collaborative Experience Consulting</p>
-      </header>
+    <Router>
+      <div className="app">
+        <Navigation />
 
-      <main className="app-main">
-        <section className="hero">
-          <h2>Welcome</h2>
-          <p>
-            Karsten Wade is a <strong>collaboration catalyst</strong> and{' '}
-            <strong>open collaboration expert</strong> specializing in developer
-            experience (DevEx) and community building.
-          </p>
-          <p>
-            With deep expertise in <strong>human systems</strong> and{' '}
-            <strong>contribution enablement</strong>, Karsten helps organizations
-            unlock the power of collaborative work.
-          </p>
-        </section>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/writing" element={<Writing />} />
+          <Route path="/cv" element={<CV />} />
+          <Route path="/theories" element={<Theories />} />
+          <Route path="/papers" element={<OpenPapers />} />
+        </Routes>
 
-        <section className="expertise">
-          <h2>Expertise Areas</h2>
-          <ul>
-            <li>Collaborative experience consulting</li>
-            <li>Developer experience (DevEx) facilitation</li>
-            <li>Open collaboration methodologies</li>
-            <li>Community catalyst and contribution enabler</li>
-            <li>Human systems expertise</li>
-          </ul>
-        </section>
-      </main>
-
-      <footer className="app-footer">
-        <p>&copy; 2025 Karsten Wade. All rights reserved.</p>
-      </footer>
-    </div>
+        <footer className="app-footer">
+          <p>&copy; 2025 Karsten Wade. All rights reserved.</p>
+        </footer>
+      </div>
+    </Router>
   )
 }
 
