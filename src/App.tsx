@@ -1,12 +1,22 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { usePageTracking } from './hooks/usePageTracking'
 import Navigation from './components/Navigation'
-import Home from './pages/Home'
-import Writing from './pages/Writing'
-import CV from './pages/CV'
-import Theories from './pages/Theories'
-import OpenPapers from './pages/OpenPapers'
 import './styles/App.css'
+
+// Lazy load route components for code splitting
+const Home = lazy(() => import('./pages/Home'))
+const Writing = lazy(() => import('./pages/Writing'))
+const CV = lazy(() => import('./pages/CV'))
+const Theories = lazy(() => import('./pages/Theories'))
+const OpenPapers = lazy(() => import('./pages/OpenPapers'))
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="loading-fallback" aria-live="polite" aria-busy="true">
+    <p>Loading...</p>
+  </div>
+)
 
 function AppContent() {
   // Track page views on route changes
@@ -16,6 +26,7 @@ function AppContent() {
     <div className="app">
       <Navigation />
 
+      <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/writing" element={<Writing />} />
@@ -23,6 +34,7 @@ function AppContent() {
           <Route path="/theories" element={<Theories />} />
           <Route path="/papers" element={<OpenPapers />} />
         </Routes>
+      </Suspense>
 
       <footer className="app-footer">
         <p>
