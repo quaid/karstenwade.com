@@ -1,4 +1,5 @@
 import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import Hero from '../components/Hero'
 import FeaturedContent from '../components/FeaturedContent'
 import './Home.css'
@@ -13,8 +14,9 @@ const Home = ({ className = '' }: HomeProps) => {
       <SEO
         title="Karsten Wade - Collaborative Experience Consulting"
         description="Karsten Wade - Open collaboration expert, community architect, and DevEx facilitator. Co-founder of Red Hat's OSPO and author of The Open Source Way."
-        ogUrl="https://karstenwade.github.io/karstenwade.com/"
+        ogUrl="https://karstenwade.com/"
       />
+      <StructuredData type="person" />
       <main id="main-content" className={`home ${className}`}>
         <Hero />
         <FeaturedContent />

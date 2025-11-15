@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { poems } from '../data/poetry'
+import StructuredData from './StructuredData'
 import './Poetry.css'
 
 export interface PoetryProps {
@@ -47,6 +48,7 @@ const Poetry = ({ className = '' }: PoetryProps) => {
               className="poem-preview"
               data-testid="poem-preview"
             >
+              <StructuredData type="poem" data={poem} />
               <div className="poem-preview__header">
                 <h3 className="poem-preview__title">{poem.title}</h3>
                 <div className="poem-preview__metadata">

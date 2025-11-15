@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { stories } from '../data/fiction'
+import StructuredData from './StructuredData'
 import './Fiction.css'
 
 export interface FictionProps {
@@ -46,6 +47,7 @@ const Fiction = ({ className = '' }: FictionProps) => {
               className="story-preview"
               data-testid="story-preview"
             >
+              <StructuredData type="story" data={story} />
               <div className="story-preview__header">
                 <h3 className="story-preview__title">{story.title}</h3>
                 <div className="story-preview__metadata">
