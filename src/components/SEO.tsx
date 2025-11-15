@@ -9,6 +9,7 @@ export interface SEOProps {
   ogImage?: string
   ogUrl?: string
   twitterCard?: 'summary' | 'summary_large_image'
+  googleSiteVerification?: string
 }
 
 const SEO = ({
@@ -17,9 +18,10 @@ const SEO = ({
   keywords = 'collaborative experience consulting, collaboration catalyst, developer experience, DevEx, community catalyst, open source, OSPO, community architecture',
   ogTitle,
   ogDescription,
-  ogImage = '/karstenwade.com/og-image.png',
-  ogUrl = 'https://karstenwade.github.io/karstenwade.com/',
+  ogImage = '/og-image.png',
+  ogUrl = 'https://karstenwade.com/',
   twitterCard = 'summary_large_image',
+  googleSiteVerification,
 }: SEOProps) => {
   const finalOgTitle = ogTitle || title
   const finalOgDescription = ogDescription || description
@@ -46,6 +48,15 @@ const SEO = ({
       <meta name="twitter:description" content={finalOgDescription} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:creator" content="@quaid" />
+
+      {/* Bluesky Meta Tags */}
+      {/* Note: Bluesky uses Open Graph tags for link previews, but we add specific tags for future compatibility */}
+      <meta property="bluesky:creator" content="@quaid.bsky.social" />
+
+      {/* Google Site Verification */}
+      {googleSiteVerification && (
+        <meta name="google-site-verification" content={googleSiteVerification} />
+      )}
 
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />

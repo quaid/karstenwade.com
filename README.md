@@ -198,6 +198,30 @@ The site includes permanent redirects for content migrated from the previous Wor
 
 Redirects are configured in `vercel.json`. See `docs/VERCEL_DEPLOYMENT.md` for details.
 
+## SEO & Analytics
+
+### Google Analytics 4
+- Tracking enabled with Measurement ID: `G-58CYSGNJ8X`
+- Automatic page view tracking on route changes
+- See `docs/GOOGLE_ANALYTICS.md` for configuration details
+
+### Google Search Console
+- Sitemap submitted at `https://karstenwade.com/sitemap.xml`
+- Performance monitoring and indexing status
+- See `docs/GOOGLE_SEARCH_CONSOLE.md` for setup and usage guide
+
+### Structured Data
+- Schema.org Person markup for Karsten Wade
+- Schema.org CreativeWork for poems and essays
+- Schema.org ScholarlyArticle for papers
+- Validates with Google Rich Results Test
+
+### Meta Tags
+- Open Graph tags for social media sharing
+- Twitter Cards for Twitter/X previews
+- Bluesky creator tag for Bluesky social network
+- Custom meta tags per page
+
 ## Development Methodology
 
 This project follows **Test-Driven Development (TDD)** principles:

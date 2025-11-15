@@ -5,4 +5,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://karstenwade.github.io/karstenwade.com/sitemap.xml
+Sitemap: https://karstenwade.com/sitemap.xml

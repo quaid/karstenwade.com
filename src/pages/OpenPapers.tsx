@@ -1,4 +1,5 @@
 import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import Card from '../components/Card'
 import { papers } from '../data/papers'
 import './OpenPapers.css'
@@ -14,8 +15,11 @@ const OpenPapers = ({ className = '' }: OpenPapersProps) => {
         title="Open Papers - Karsten Wade"
         description="Research papers and frameworks on open source community building, developer relations, and collaborative experience by Karsten Wade."
         keywords="open source papers, community building, developer relations, collaborative experience, open collaboration research"
-        ogUrl="https://karstenwade.github.io/karstenwade.com/papers"
+        ogUrl="https://karstenwade.com/papers"
       />
+      {papers.map((paper) => (
+        <StructuredData key={paper.externalUrl} type="paper" data={paper} />
+      ))}
       <main id="main-content" className={`open-papers ${className}`}>
       <div className="open-papers__header">
         <h1 className="open-papers__title">Open Papers</h1>
