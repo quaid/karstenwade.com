@@ -1,11 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// Determine base path based on deployment target
+// - Vercel (primary): '/' at root domain karstenwade.com
+// - GitHub Pages (mirror): '/karstenwade.com/' at karstenwade.github.io
+const isGitHubPages = process.env.GITHUB_PAGES === 'true'
+const base = isGitHubPages ? '/karstenwade.com/' : '/'
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Base path for GitHub Pages - '/karstenwade.com/' for github.io hosting
-  base: '/karstenwade.com/',
+  // Base path: '/' for Vercel, '/karstenwade.com/' for GitHub Pages
+  base,
   build: {
     // Output directory for static files
     outDir: 'dist',

@@ -1,9 +1,13 @@
 # DNS Configuration Guide
-# karstenwade.com → GitHub Pages
+# karstenwade.com → Vercel (Primary) / GitHub Pages (Mirror)
 
-**Last Updated:** 2025-11-07
+**Last Updated:** 2025-11-14
 
-This document provides comprehensive instructions for configuring the custom domain `karstenwade.com` to point to GitHub Pages.
+**Note:** This site uses a dual deployment strategy:
+- **Primary:** Vercel at https://karstenwade.com
+- **Mirror:** GitHub Pages at https://karstenwade.github.io/karstenwade.com/
+
+This document covers GitHub Pages DNS configuration. For Vercel deployment, see [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md).
 
 ---
 
@@ -24,16 +28,15 @@ This document provides comprehensive instructions for configuring the custom dom
 ## Overview
 
 **Deployment Architecture:**
-- **Primary Hosting:** GitHub Pages
-- **Custom Domain:** karstenwade.com
-- **Fallback URL:** https://karstenwade.github.io/karstenwade.com/
-- **HTTPS:** Automatic SSL via GitHub Pages (Let's Encrypt)
-- **CDN:** GitHub's global CDN
+- **Primary Hosting:** Vercel at https://karstenwade.com
+- **Mirror Hosting:** GitHub Pages at https://karstenwade.github.io/karstenwade.com/
+- **DNS:** Points to Vercel for custom domain
+- **HTTPS:** Automatic SSL via Vercel (Let's Encrypt)
+- **CDN:** Vercel's global edge network
 
-**Removed:**
-- ❌ DreamHost mirror deployment
-- ❌ Sync scripts
-- ❌ Dual hosting
+**This Guide Covers:**
+- GitHub Pages mirror deployment configuration
+- For primary Vercel deployment, see [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md)
 
 ---
 

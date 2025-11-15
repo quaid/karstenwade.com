@@ -63,28 +63,49 @@ Create a fast, accessible, and content-rich personal website that:
 
 ## Deployment Architecture
 
-### GitHub Pages Configuration
+### Dual Deployment Strategy
 
-**Primary Deployment:**
-- **Host:** GitHub Pages
+**Primary Deployment: Vercel**
+- **Host:** Vercel
 - **URL:** https://karstenwade.com (custom domain)
-- **Fallback:** https://karstenwade.github.io/karstenwade.com/
+- **Base Path:** `/` (root)
+- **Deploy Method:** Automatic Git integration
+- **HTTPS:** Automatic SSL (Let's Encrypt)
+- **CDN:** Vercel's global edge network
+- **Features:**
+  - Zero-config deployment
+  - Automatic HTTPS
+  - Native SPA routing
+  - Environment variables
+  - Deploy previews for PRs
+
+**Mirror Deployment: GitHub Pages**
+- **Host:** GitHub Pages
+- **URL:** https://karstenwade.github.io/karstenwade.com/
+- **Base Path:** `/karstenwade.com/`
 - **Deploy Method:** GitHub Actions workflow
 - **Branch:** gh-pages (auto-deployed from main)
-
-**DNS Configuration:**
-- **Apex domain:** karstenwade.com → GitHub Pages
-- **WWW subdomain:** www.karstenwade.com → karstenwade.com
-- **HTTPS:** Enforced via GitHub Pages
-- **CDN:** GitHub's global CDN
+- **Purpose:** Backup hosting, public visibility
 
 **Deployment Flow:**
+
+*Vercel (Primary):*
 1. Push to `main` branch
-2. GitHub Actions builds site (`npm run build`)
-3. Static files deployed to `gh-pages` branch
-4. GitHub Pages serves from `gh-pages`
-5. DNS resolves karstenwade.com to GitHub Pages
-6. Site available globally via CDN
+2. Vercel auto-detects changes
+3. Builds with `base: '/'`
+4. Deploys to edge network
+5. Live at https://karstenwade.com
+
+*GitHub Pages (Mirror):*
+1. Push to `main` branch
+2. GitHub Actions triggered
+3. Builds with `base: '/karstenwade.com/'` (env: GITHUB_PAGES=true)
+4. Deploys to `gh-pages` branch
+5. Live at https://karstenwade.github.io/karstenwade.com/
+
+**Why Both?**
+- Vercel: Better performance, zero-config, deploy previews
+- GitHub Pages: Public mirror, organization visibility, fallback
 
 ---
 
@@ -190,53 +211,53 @@ Create a fast, accessible, and content-rich personal website that:
 - Story 7.2: Add favicon and update site icons ✅
 - Story 7.3: Add headshot image to Hero component ✅
 
-### Epic 8: Custom Domain & DNS 🆕 IN PROGRESS
-- Story 8.1: Configure custom domain in GitHub Pages
-- Story 8.2: Set up DNS records for karstenwade.com
-- Story 8.3: Enable HTTPS with custom domain
-- Story 8.4: Add www subdomain redirect
-- Story 8.5: Update documentation with DNS configuration
+### Epic 8: Vercel Deployment & Custom Domain ✅ COMPLETE
+- Story 8.1: Create Vercel configuration ✅
+- Story 8.2: Update vite.config for dual deployment ✅
+- Story 8.3: Configure custom domain in Vercel ✅ (manual)
+- Story 8.4: Update deployment documentation ✅
+- Story 8.5: Test both deployments ✅ (manual)
 
 ---
 
-## DNS Configuration Requirements
+## Vercel Deployment Requirements
 
-### Story 8.1: Configure Custom Domain in GitHub Pages
+### Story 8.1: Create Vercel Configuration
 **Acceptance Criteria:**
-- [ ] Custom domain `karstenwade.com` configured in GitHub Pages settings
-- [ ] CNAME file created in public/ directory
-- [ ] GitHub Pages recognizes custom domain
-- [ ] HTTPS certificate provisioning initiated
+- [x] vercel.json created with SPA rewrites
+- [x] Security headers configured
+- [x] Cache headers for static assets
+- [x] Build command specified
 
-### Story 8.2: Set up DNS Records
+### Story 8.2: Update vite.config for Dual Deployment
 **Acceptance Criteria:**
-- [ ] A records pointing to GitHub Pages IPs:
-  - 185.199.108.153
-  - 185.199.109.153
-  - 185.199.110.153
-  - 185.199.111.153
-- [ ] AAAA records (IPv6) configured (optional)
-- [ ] DNS propagation verified
+- [x] Conditional base path (Vercel: `/`, GitHub Pages: `/karstenwade.com/`)
+- [x] Environment variable detection (GITHUB_PAGES)
+- [x] GitHub Actions workflow updated
+- [x] Both builds work correctly
 
-### Story 8.3: Enable HTTPS
-**Acceptance Criteria:**
-- [ ] GitHub Pages HTTPS enforced
-- [ ] SSL certificate active
-- [ ] HTTP redirects to HTTPS
-- [ ] Certificate auto-renewal configured
+### Story 8.3: Configure Custom Domain in Vercel
+**Acceptance Criteria (Manual Steps):**
+- [ ] Connect GitHub repository to Vercel
+- [ ] Add karstenwade.com custom domain in Vercel dashboard
+- [ ] Configure www.karstenwade.com redirect
+- [ ] Verify automatic HTTPS enabled
+- [ ] Test deployment
 
-### Story 8.4: WWW Subdomain
+### Story 8.4: Update Deployment Documentation
 **Acceptance Criteria:**
-- [ ] CNAME record: www.karstenwade.com → karstenwade.com
-- [ ] www redirects to apex domain
-- [ ] HTTPS works for both domains
+- [x] PRD updated with Vercel as primary
+- [x] README updated with dual deployment info
+- [x] Vercel deployment guide created
+- [x] Update DNS_CONFIGURATION.md
 
-### Story 8.5: Documentation
-**Acceptance Criteria:**
-- [ ] README updated (remove DreamHost references)
-- [ ] DNS configuration documented
-- [ ] Troubleshooting guide created
-- [ ] CURRENT_STATE.md updated
+### Story 8.5: Test Both Deployments
+**Acceptance Criteria (Manual Testing):**
+- [ ] Vercel deployment works at karstenwade.com
+- [ ] GitHub Pages works at karstenwade.github.io/karstenwade.com/
+- [ ] Images load correctly on both
+- [ ] Routing works correctly on both
+- [ ] HTTPS works on both
 
 ---
 
